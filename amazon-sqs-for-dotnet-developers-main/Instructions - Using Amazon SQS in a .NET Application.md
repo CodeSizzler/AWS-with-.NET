@@ -1,6 +1,5 @@
 # Lab: Using Amazon SQS in a .NET Application
 
----
 
 ## Overview
 
