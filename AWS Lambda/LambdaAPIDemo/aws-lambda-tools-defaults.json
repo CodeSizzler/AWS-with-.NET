@@ -1,0 +1,20 @@
+
+{
+    "region" : "ap-south-1",
+    "profile" : "superuser",
+    "configuration" : "Release",
+    "framework"     : "net8.0",
+    "function-name" : "LambdaAPIDemo",
+    "package-type"  : "Zip",
+    "function-handler" : "LambdaAPIDemo",
+    "function-memory-size" : 256,
+    "function-role"        : "arn:aws:iam::316490106826:role/service-role/LambdaAPIDemo-role-kgu3g7db",
+    "function-timeout"     : 10,
+    "function-runtime"     : "dotnet8",
+    "function-architecture" : "x86_64",
+    "function-subnets"      : "",
+    "function-security-groups" : "",
+    "tracing-mode"             : "PassThrough",
+    "environment-variables"    : "",
+    "image-tag"                : ""
+}
