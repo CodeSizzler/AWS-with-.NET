@@ -40,69 +40,64 @@ To develop a simple [ASP.NET](https://asp.net/) Core Web API application on a 
     *   Navigate to the directory containing your .pem key file.
     *   Secure the key file permissions:
 
-bash
-
+```bash
 chmod 400 cds-demo-ec2-kp.pem
+```
 
-*   *   Connect to the instance (the username for Amazon Linux is ec2-user):
+* Connect to the instance (the username for Amazon Linux is ec2-user):
 
-bash
-
+```bash
 ssh -i "cds-demo-ec2-kp.pem" ec2-user@<Your-Public-DNS>
+```
 
 #### Phase 3: Install the .NET Runtime on the EC2 Instance
 
 1.  **Download the .NET Runtime:**
     *   In your SSH session, download the latest Linux [ASP.NET](https://asp.net/) Core Runtime binaries using wget. Get the URL from the [official .NET downloads page](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
 
-bash
-
+```bash
 wget [https://download.visualstudio.microsoft.com/download/pr/<unique-id>/aspnetcore-runtime-8.0.19-linux-x64.tar.gz](https://download.visualstudio.microsoft.com/download/pr/%3cunique-id%3e/aspnetcore-runtime-8.0.19-linux-x64.tar.gz)
+```
 
 1.  **Install the Runtime:**
     *   Create a directory for .NET and extract the downloaded file into it.
 
-bash
-
+```bash
 mkdir -p $HOME/dotnet
-
 tar zxf aspnetcore-runtime-8.0.19-linux-x64.tar.gz -C $HOME/dotnet
+```
 
 1.  **Set Permanent Environment Variables:**
     *   Add the paths to your shell profile to make the dotnet command available permanently.
 
-bash
-
+```bash
 echo 'export DOTNET\_ROOT=$HOME/dotnet' >> ~/.bash\_profile
-
 echo 'export PATH=$PATH:$HOME/dotnet' >> ~/.bash\_profile
-
 source ~/.bash\_profile
-
+```
 1.  **Verify the Installation:**
     *   Confirm the runtime is installed correctly.
 
-bash
-
+```bash
 dotnet --list-runtimes
+```
 
 #### Phase 4: Develop and Publish the Application Locally
 
 1.  **Create a New .NET Web App (Local Machine):**
     *   On your local machine, open a terminal and create a new project.
 
-bash
-
+```bash
 dotnet new webapi -n hello-world-ec2
-
 cd hello-world-ec2
+```
 
 1.  **Publish the Application:**
     *   Publish the application for the Linux environment.
 
-bash
-
+```bash
 dotnet publish -c Release -o ./publish --os linux
+```
 
 ### Final Outcome
 
