@@ -33,12 +33,13 @@ Deploy an [ASP.NET](https://asp.net/) Core Web API application to AWS Lambda u
 
 1.  Open Program.cs file
 2.  Add the following code after
-
+```
 var builder = WebApplication.CreateBuilder(args);
 
 // Add AWS Lambda support
 
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
+```
 
 Open your .csproj file and add the ProjectType inside the PropertyGroup section 
 
