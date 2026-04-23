@@ -6,9 +6,20 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var awsOptions = builder.Configuration.GetSection("AWS");
 
-builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
-builder.Services.AddAWSService<IAmazonSimpleNotificationService>();
+var accessKey = awsOptions["AccessKey"];
+
+var secretKey = awsOptions["SecretKey"];
+
+var region = awsOptions["Region"];
+// Register the AWS S3 client with credentials
+
+builder.Services.AddSingleton<IAmazonSimpleNotificationService>(sp =>
+new AmazonSimpleNotificationServiceClient(accessKey, secretKey, Amazon.RegionEndpoint.GetBySystemName(region))
+);
+//builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+//builder.Services.AddAWSService<IAmazonSimpleNotificationService>();
 
 
 var app = builder.Build();
